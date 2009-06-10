@@ -1,5 +1,6 @@
 -module (testlyet).
 -compile ({ parse_transform, lyet }).
+-compile (export_all).
 
 -ifdef (HAVE_EUNIT).
 -include_lib ("eunit/include/eunit.hrl").
