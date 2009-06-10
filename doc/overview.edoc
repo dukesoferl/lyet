@@ -1,0 +1,4 @@
+@author Paul Mineiro (based upon work by Ulf Wiger)
+@copyright 2009 Paul Mineiro released under EPL
+@title Lyet
+@doc Erlang parse transform to provide let like functionality.
