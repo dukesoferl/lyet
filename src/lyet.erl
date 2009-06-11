@@ -50,6 +50,8 @@
 %%% replaced at compile-time with 
 %%% (fun (Var) -> Expr end) (Value)
 %%%
+%%% also recognized: let_ (Var = Value, Expr).
+
 parse_transform(Forms, Options) ->
   LetToLambda = 
     fun(Form, _Context) ->
