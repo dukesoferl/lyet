@@ -18,7 +18,7 @@ testone (X) ->
   lyet:lyet (X = g (X),
              X = h (X),
              X = l (X),
-             m (X)).
+    m (X)).
 
 
 testtwo (X) ->
@@ -43,6 +43,37 @@ testthree (X) ->
 testnoassign () ->
   lyet:lyet (9 + 2).
 
+% per Ulf's suggestion, use a local call (let_)
+
+testmegaone (X) ->
+  let_ (X = g (X),
+        X = h (X),
+        X = l (X),
+    m (X)).
+
+
+testmegatwo (X) ->
+  let_ (X = g (X), 
+    let_ (X = h (X), 
+      let_ (X = l (X), 
+        m (X)
+      )
+    )
+  ).
+
+testmegathree (X) ->
+  let_ (X = 
+    let_ (X = 
+      let_ (X = 
+        let_ (X = g (X), 
+              X), 
+        h (X)), 
+    l (X)), 
+  m (X)).
+
+testmeganoassign () ->
+  let_ (9 + 2).
+
 -ifdef (EUNIT).
 
 one_test () -> 
@@ -56,5 +87,17 @@ three_test () ->
 
 noassign_test () -> 
   ?assertEqual (11, testnoassign ()).
+
+one_mega_test () -> 
+  ?assertEqual (11, testmegaone (1)).
+
+two_mega_test () -> 
+  ?assertEqual (11, testmegatwo (1)).
+
+three_mega_test () -> 
+  ?assertEqual (11, testmegathree (1)).
+
+noassign_mega_test () -> 
+  ?assertEqual (11, testmeganoassign ()).
 
 -endif.
