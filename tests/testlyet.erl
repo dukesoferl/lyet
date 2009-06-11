@@ -14,35 +14,6 @@ m (X) -> X + 4.
 % different equivalent ways of writing m (l (h (g (X))))
 % i like the first one the best
 
-testone (X) ->
-  lyet:lyet (X = g (X),
-             X = h (X),
-             X = l (X),
-    m (X)).
-
-
-testtwo (X) ->
-  lyet:lyet (X = g (X), 
-    lyet:lyet (X = h (X), 
-      lyet:lyet (X = l (X), 
-        m (X)
-      )
-    )
-  ).
-
-testthree (X) ->
-  lyet:lyet (X = 
-    lyet:lyet (X = 
-      lyet:lyet (X = 
-        lyet:lyet (X = g (X), 
-                   X), 
-        h (X)), 
-    l (X)), 
-  m (X)).
-
-testnoassign () ->
-  lyet:lyet (9 + 2).
-
 % per Ulf's suggestion, use a local call (let_)
 
 testmegaone (X) ->
@@ -74,19 +45,36 @@ testmegathree (X) ->
 testmeganoassign () ->
   let_ (9 + 2).
 
+testone (X) ->
+  lyet:lyet (X = g (X),
+             X = h (X),
+             X = l (X),
+    m (X)).
+
+
+testtwo (X) ->
+  lyet:lyet (X = g (X), 
+    lyet:lyet (X = h (X), 
+      lyet:lyet (X = l (X), 
+        m (X)
+      )
+    )
+  ).
+
+testthree (X) ->
+  lyet:lyet (X = 
+    lyet:lyet (X = 
+      lyet:lyet (X = 
+        lyet:lyet (X = g (X), 
+                   X), 
+        h (X)), 
+    l (X)), 
+  m (X)).
+
+testnoassign () ->
+  lyet:lyet (9 + 2).
+
 -ifdef (EUNIT).
-
-one_test () -> 
-  ?assertEqual (11, testone (1)).
-
-two_test () -> 
-  ?assertEqual (11, testtwo (1)).
-
-three_test () -> 
-  ?assertEqual (11, testthree (1)).
-
-noassign_test () -> 
-  ?assertEqual (11, testnoassign ()).
 
 one_mega_test () -> 
   ?assertEqual (11, testmegaone (1)).
@@ -99,5 +87,17 @@ three_mega_test () ->
 
 noassign_mega_test () -> 
   ?assertEqual (11, testmeganoassign ()).
+
+one_test () -> 
+  ?assertEqual (11, testone (1)).
+
+two_test () -> 
+  ?assertEqual (11, testtwo (1)).
+
+three_test () -> 
+  ?assertEqual (11, testthree (1)).
+
+noassign_test () -> 
+  ?assertEqual (11, testnoassign ()).
 
 -endif.
