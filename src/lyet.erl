@@ -62,20 +62,14 @@ parse_transform(Forms, Options) ->
                     [Expr|Assignments] = lists:reverse(L),
                     lists:foldl 
                       (fun (Assign, Acc) ->
-                         { match, Line, { var, _, Var }, Val } = 
+                         { match, Line, Pattern, Val } = 
                            erl_syntax:revert (Assign),
                          { call,
                            Line,
                            { 'fun',
                              Line,
                              { clauses,
-                               [ { clause,
-                                   Line,
-                                   [ { var, Line, Var } ],
-                                   [],
-                                   [ Acc ]
-                                 }
-                               ]
+                               [ { clause, Line, [ Pattern ], [], [ Acc ] } ]
                              }
                            },
                            [ Val ]

@@ -1,3 +1,6 @@
+Version 0.2.0 
+  * handle structured match statements (duh)
+
 Version 0.1.0
   * Per Ulf's suggestion, rewrite local call (let_) for nicer syntax.
 

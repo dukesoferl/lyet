@@ -45,6 +45,12 @@ testmegathree (X) ->
 testmeganoassign () ->
   let_ (9 + 2).
 
+testmegastructured (X) ->
+  let_ ({ _, X } = { dude, g (X) },
+        { X, _ } = { h (X), wheres },
+        { _, X } = { my, l (X) },
+    { car, m (X) }).
+
 testone (X) ->
   lyet:lyet (X = g (X),
              X = h (X),
@@ -87,6 +93,9 @@ three_mega_test () ->
 
 noassign_mega_test () -> 
   ?assertEqual (11, testmeganoassign ()).
+
+structured_mega_test () -> 
+  ?assertEqual ({ car, 11 }, testmegastructured (1)).
 
 one_test () -> 
   ?assertEqual (11, testone (1)).
