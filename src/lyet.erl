@@ -139,6 +139,9 @@ xform({M,F,A}, Fun, Forms, Context0) ->
                   {Fname, Arity} = erl_syntax_lib:analyze_function(Form),
                   VarNames = erl_syntax_lib:new_variable_names(
                                Arity,
+                               fun (N) ->
+                                 list_to_atom ("_V" ++ integer_to_list (N))
+                               end,
                                erl_syntax_lib:variables(Form)),
                   {Form, [{function, Fname},
                           {arity, Arity},

@@ -1,2 +1,4 @@
 TESTS = 		\
   module-testlyet
+
+testlyet.beam: testlyet.erl ../src/lyet.beam
