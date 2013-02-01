@@ -14,4 +14,4 @@ if test -z "$fwb"
     exit 1
   fi
 
-"$fwb" --fw_version "0.1.34" --name lyet --template erlang --revision svn --svn_project_path https://fwtemplates.googlecode.com/svn/trunk/lyet --svn_tag_root https://fwtemplates.googlecode.com/svn/tags/lyet "$@"
+"$fwb" --fw_version "0.1.34" --name lyet --template erlang --revision git "$@"
