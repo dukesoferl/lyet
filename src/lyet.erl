@@ -29,8 +29,8 @@
 -define(ERROR(R, T, F, I),
         begin
             rpt_error(R, T, F, I),
-            throw({error,erl_syntax:get_pos(
-                           proplists:get_value(form,I)),{unknown,R}})
+            throw({error,erl_anno:location(get_pos(
+                           proplists:get_value(form,I))),{unknown,R}})
         end).
 
 -import(erl_syntax, [clause/3,
@@ -62,14 +62,14 @@ parse_transform(Forms, Options) ->
                     [Expr|Assignments] = lists:reverse(L),
                     lists:foldl 
                       (fun (Assign, Acc) ->
-                         { match, Line, Pattern, Val } = 
+                         { match, Anno, Pattern, Val } = 
                            erl_syntax:revert (Assign),
                          { call,
-                           Line,
+                           Anno,
                            { 'fun',
-                             Line,
+                             Anno,
                              { clauses,
-                               [ { clause, Line, [ Pattern ], [], [ Acc ] } ]
+                               [ { clause, Anno, [ Pattern ], [], [ Acc ] } ]
                              }
                            },
                            [ Val ]
